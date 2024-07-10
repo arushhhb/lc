@@ -1,0 +1,17 @@
+https://algo.monster/liteproblems/339
+
+int depthSum(vector<NestedInteger>& nestedList) {
+    function<int(vector<NestedInteger>&, int)> dfs = 
+    [&](vector<NestedInteger>& list, int depth) -> int {
+        int currentDepthSum = 0;
+        for (const auto& item : list) {
+            if (item.isInteger()) { 
+                currentDepthSum += item.getInteger() * depth;
+            } else {
+                currentDepthSum += dfs(item.getList(), depth + 1);
+            }
+        }
+        return currentDepthSum;
+    };
+    return dfs(nestedList, 1);
+}

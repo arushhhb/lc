@@ -1,17 +1,16 @@
-https://algo.monster/liteproblems/339
-
-int depthSum(vector<NestedInteger>& nestedList) {
-    function<int(vector<NestedInteger>&, int)> dfs = 
-    [&](vector<NestedInteger>& list, int depth) -> int {
-        int currentDepthSum = 0;
-        for (const auto& item : list) {
-            if (item.isInteger()) { 
-                currentDepthSum += item.getInteger() * depth;
-            } else {
-                currentDepthSum += dfs(item.getList(), depth + 1);
-            }
-        }
-        return currentDepthSum;
-    };
-    return dfs(nestedList, 1);
-}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))
+plt.figure(figsize=(8, 6))
+p = plt.pcolor(X, Y, Z, shading='auto', cmap='viridis')
+plt.colorbar(p, label='Potential Value')
+plt.xlim(-5, 5)
+plt.ylim(-5, 5)
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.gca().set_aspect('equal', adjustable='box')
+plt.title('2D Potential Surface of Cr')
+plt.show()
